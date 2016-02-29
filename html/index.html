@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Full Aquarium monitor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" >
+<link rel="stylesheet" type="text/css" href="style.css" >
+    <script type="text/javascript" src="webiopi.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>	
+    <script type="text/javascript">
+	
+
+	webiopi().ready(function() {
+        
+        var relayControl = webiopi().createGPIOButton(27, "Light1");
+		$("#controls").append(relayControl);
+		
+		var relayControl = webiopi().createGPIOButton(22, "Light2");
+		$("#controls").append(relayControl);
+		
+        var relayControl = webiopi().createMacroButtonGPIO(17, "Macro1", "relayControl", "1");
+        $("#controls1").append(relayControl);
+
+        var relayControl = webiopi().createMacroButton("relay2Button", "Macro2", "relayControl", "2");
+         $("#controls1").append(relayControl);
+		
+		webiopi().refreshGPIO(false);	
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.linkdetails').hide();
+
+			$('.link').click(function() {
+				$('.linkdetails').hide();
+				$('.linkdetails[data-link=' + $(this).data('link') + ']').fadeIn({width: '200px'}, 300);
+				});
+			});
+	 </script>
+
+</head>
+<body>
+<div id="doc" class="yui-t7">
+  <div id="hd">
+    <div id="header"><h1>Aquarium monitor</h1></div>
+  </div>
+  <div id="bd">
+    <div id="yui-main">
+      <div class="yui-b">
+        <div class="yui-gb">
+          <div class="yui-u first">
+            <div class="content">
+				<a class="link" data-link="first" href="#"> test</a>
+				<a class="link" data-link="second" href="#">test</a>
+            </div>
+          </div>
+          <div class="yui-u">
+            <div class="content">
+				<div class="detailscontainer" >
+				<div class="linkdetails hide" data-link="first"><div id="controls1"></div></div>
+				<div class="linkdetails hide" data-link="second"><div id="controls"></div></div>
+				</div>
+			</div>
+          </div>
+          <div class="yui-u">
+            <div class="content">Content Here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="yui-b">
+      <div id="secondary">Secondary Column</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
